@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Agenda</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />  
+    </head>
+    <body>
+        <div class="uk-container">
+    		<button class="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-example">Novo contato</button>
+            <table class="uk-table uk-table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome do contato</th>
+                        <th>Número do telefone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="contato : ${contatos}">
+					    <td th:text="${contato.nome}"></td>
+					    <td th:text="${contato.telefone}"></td>
+					    <td><a th:href="@{'/editar/' + ${contato.id}}">Editar</a></td>
+					    <td><a th:href="@{'/excluir/' + ${contato.id}}">Excluir</a></td>
+					</tr>
+                </tbody>
+            </table>
+        </div>
+    	
+        <div id="modal-example" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+                <form th:action="@{/}" method="post" enctype="multipart/form-data">
+                    <fieldset class="uk-fieldset">
+                        <legend class="uk-legend">Novo contato</legend>
+                        <div class="uk-margin">
+                            <input class="uk-input" type="text" name="nome" placeholder="Nome de contato">
+                        </div>
+                        <div class="uk-margin">
+                            <input class="uk-input" type="text" name="telefone" placeholder="Número de telefone">
+                        </div>
+                    </fieldset>
+                    <p class="uk-text-right">
+                        <button class="uk-button uk-button-primary" type="submit">Adicionar</button>
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    	
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
+    </body>
+</html>
