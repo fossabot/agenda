@@ -6,4 +6,6 @@ import com.dbserver.agenda.models.AgendaModel;
 
 public interface AgendaRepository extends CrudRepository<AgendaModel, String> {
 	void deleteById(Long id);
+
+	Iterable<AgendaModel> findById(Long id);
 }

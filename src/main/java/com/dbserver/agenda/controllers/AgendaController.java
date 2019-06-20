@@ -39,4 +39,20 @@ public class AgendaController {
 		agendaRepository.deleteById(id);
 		return "redirect:/";
 	}
+	
+	@GetMapping("/editar/{id}")
+	public ModelAndView detalhesContato(@PathVariable("id") Long id) {
+		ModelAndView modelView = new ModelAndView("editar");
+
+		Iterable<AgendaModel> contato = agendaRepository.findById(id);
+		modelView.addObject("contato", contato);
+
+		return modelView;
+	}
+	
+	@PostMapping("/editar")
+	public String editarContato(AgendaModel agenda) {
+		agendaRepository.save(agenda);
+		return "redirect:/";
+	}
 }

@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Editar | Agenda</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />  
+    </head>
+    <body>
+        <div class="uk-container">
+        	<article class="uk-article" th:each="contato : ${contato}">
+        		<h1 class="uk-article-title" th:text="${'Editar ' + contato.nome}"></h1>
+	    		<form class="uk-form-horizontal uk-margin-large" th:action="@{/editar}" method="post" enctype="multipart/form-data">
+				    <div class="uk-margin">
+				        <label class="uk-form-label" for="form-horizontal-text">Nome do contato</label>
+				        <div class="uk-form-controls">
+				            <input class="uk-input" id="form-horizontal-text" type="text" name="nome" placeholder="Nome do contato" th:value="${contato.nome}">
+				        </div>
+				    </div>
+				    
+				    <div class="uk-margin">
+				        <label class="uk-form-label" for="form-horizontal-text">Número do contato</label>
+				        <div class="uk-form-controls">
+				            <input class="uk-input" id="form-horizontal-text" type="text" name="telefone" placeholder="Número do contato" th:value="${contato.telefone}">
+				        </div>
+				        <input type="hidden" name="id" th:value="${contato.id}">
+				    </div>
+				    
+				    <div class="uk-margin">
+				    	<button class="uk-button uk-button-primary">Salvar Alteração</button>
+				    	<a class="uk-button uk-button-default" th:href="@{'/'}">Voltar</a>
+				    </div>
+				</form>
+			</article>
+        </div>
+    	
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
+    </body>
+</html>
