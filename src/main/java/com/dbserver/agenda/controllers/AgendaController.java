@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dbserver.agenda.models.AgendaModel;
@@ -22,6 +23,16 @@ public class AgendaController {
 		ModelAndView modelView = new ModelAndView("index");
 
 		Iterable<AgendaModel> contatos = agendaRepository.findAll();
+		modelView.addObject("contatos", contatos);
+
+		return modelView;
+	}
+	
+	@PostMapping("/search")
+	public ModelAndView search(@RequestParam("searchName") String name) {
+		ModelAndView modelView = new ModelAndView("search");
+
+		Iterable<AgendaModel> contatos = agendaRepository.findByName(name);
 		modelView.addObject("contatos", contatos);
 
 		return modelView;
